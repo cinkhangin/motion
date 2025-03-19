@@ -153,7 +153,7 @@ fun AutoNumber(
             value = if (scrollDown) -target else target,
             animationSpec = tween(
                 durationMillis = 1500,
-                easing = CubicBezierEasing(0.1f, 0.0f, 1.0f, 1.0f)
+                easing = CubicBezierEasing(0.1f, 0.0f, 0.2f, 1.0f)
             )
         )
     }
