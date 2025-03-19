@@ -5,101 +5,100 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.motion.theme.ComposeTheme
 import com.naulian.modify.rememberIntState
+import com.naulian.motion.AnimatedNumber
+import com.naulian.motion.GradientText
+import com.naulian.motion.MarqueeText
+import com.naulian.motion.RippleCircle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
-import kotlinx.serialization.Serializable
 import kotlin.random.Random
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
             ComposeTheme {
-
-                val navController = rememberNavController()
-                NavHost(
-                    navController = navController,
-                    startDestination = Home
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
                 ) {
-                    composable<Home> {
-                        HomeScreen(navController)
-                    }
-                    composable<Second> {
-                        SecondScreen(navController)
-                    }
+                    RippleCircleExample()
                 }
             }
         }
     }
 }
 
-@Serializable
-object Home
-
-@Serializable
-object Second
+@Composable
+fun RippleCircleExample() {
+    RippleCircle(color = Color.White, onClick = {})
+}
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun MarqueeTextExample() {
+    MarqueeText(
+        modifier = Modifier.padding(24.dp),
+        text = "DO NOT PUSH PRODUCTION ON FRIDAY!",
+        style = TextStyle(
+            fontSize = 64.sp, lineHeight = 72.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        ),
+    )
+}
 
-
-
-
-
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        var number by rememberIntState(0)
-
-        LaunchedEffect(Unit) {
-            repeat(100) {
-                number += Random.nextInt(-3, 31)
-                delay(2500)
-            }
-        }
-
-        Number(
-            number = number.toLong(),
-            textStyle = TextStyle(
-                fontSize = 96.sp, lineHeight = 120.sp
-            )
+@Composable
+fun GradientTextExample() {
+    GradientText(
+        text = "works on my machine",
+        style = TextStyle(
+            fontSize = 96.sp, lineHeight = 110.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        ),
+        colors = listOf(
+            Color(0xFFF06292),
+            Color(0xFF9575CD),
+            Color(0xFF7986CB),
+            Color(0xFF64B5F6),
         )
-    }
-
-
-
-
-
-
-
+    )
 }
 
 @Composable
-fun SecondScreen(navController: NavController) {
-    Box(
-        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
-    ) {
-        Button(onClick = {
-            navController.navigateUp()
-        }) {
-            Text("Back Home")
+fun AnimatedNumberExample() {
+    var number by rememberIntState(0)
+
+    LaunchedEffect(Unit) {
+        repeat(100) {
+            number += Random.nextInt(-3, 31)
+            delay(2500)
         }
     }
+
+    AnimatedNumber(
+        number = number.toLong(),
+        textStyle = TextStyle(
+            fontSize = 96.sp, lineHeight = 120.sp
+        )
+    )
 }
+
+
+

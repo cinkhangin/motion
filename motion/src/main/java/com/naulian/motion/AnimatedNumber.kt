@@ -1,4 +1,4 @@
-package com.example.motion
+package com.naulian.motion
 
 import androidx.annotation.IntRange
 import androidx.compose.animation.core.CubicBezierEasing
@@ -34,7 +34,7 @@ import kotlinx.coroutines.delay
 import kotlin.math.abs
 
 @Composable
-fun Number(
+fun AnimatedNumber(
     modifier: Modifier = Modifier,
     number: Long,
     digitCount: Int = 5,
@@ -72,7 +72,7 @@ fun Number(
 
     Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(0.dp)) {
         numbers.fastForEach { value ->
-            AutoNumber(value, number, style)
+            SingleAnimatedNumber(value, number, style)
         }
     }
 }
@@ -90,11 +90,11 @@ private fun NumberPreview() {
         }
     }
 
-    Number(number = number.toLong(), textStyle = TextStyle.Default)
+    AnimatedNumber(number = number.toLong(), textStyle = TextStyle.Default)
 }
 
 @Composable
-fun AutoNumber(
+fun SingleAnimatedNumber(
     @IntRange(0, 9) value: Int,
     fullNumber: Long,
     textStyle: TextStyle = MaterialTheme.typography.bodyLarge
@@ -183,5 +183,5 @@ fun AutoNumber(
 @Preview
 @Composable
 private fun AutoNumberPreview() {
-    AutoNumber(5, 0, textStyle = TextStyle.Default)
+    SingleAnimatedNumber(5, 0, textStyle = TextStyle.Default)
 }

@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.google.hilt)
@@ -7,20 +7,15 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
-val packageName = "com.example.motion"
-
 android {
-    namespace = packageName
+    namespace = "com.naulian.motion"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = packageName
         minSdk = 28
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -56,6 +51,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
+    implementation(libs.androidx.core.splashscreen)
 
     //compose
     implementation(platform(libs.androidx.compose.bom))
@@ -93,6 +89,4 @@ dependencies {
     implementation(libs.google.hilt.android)
     ksp(libs.google.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
-
-    implementation(project(":motion"))
 }

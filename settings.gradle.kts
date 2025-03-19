@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":motion")
+
+
 pluginManagement {
     repositories {
         google()
