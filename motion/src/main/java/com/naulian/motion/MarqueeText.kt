@@ -64,5 +64,5 @@ fun ContentDrawScope.drawFadedEdge(leftEdge: Boolean) {
 @Preview
 @Composable
 private fun HomeTopPartPreview() {
-   MarqueeText(text = "Cin Khan Gin Naulian Kalein Hgee Bwar", style = MaterialTheme.typography.headlineLarge)
+   MarqueeText(text = "Lorem Ipsum dolar asit amet", style = MaterialTheme.typography.headlineLarge)
 }

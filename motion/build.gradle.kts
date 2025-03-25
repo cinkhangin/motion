@@ -50,7 +50,6 @@ dependencies {
     //core
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.google.material)
     implementation(libs.androidx.core.splashscreen)
 
     //compose
@@ -73,11 +72,6 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.test.manifest)
-
-    //firebase
-    implementation(platform(libs.google.firebase.bom))
-    implementation(libs.google.firebase.auth)
-    implementation(libs.google.firebase.firestore)
 
     //naulian
     implementation(libs.naulian.anhance)

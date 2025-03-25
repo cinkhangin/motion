@@ -37,9 +37,7 @@ class MainActivity : ComponentActivity() {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
-                ) {
-                    RippleCircleExample()
-                }
+                ) {}
             }
         }
     }
