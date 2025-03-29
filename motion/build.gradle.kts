@@ -1,10 +1,12 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.ksp)
-    alias(libs.plugins.google.hilt)
     alias(libs.plugins.compose)
     alias(libs.plugins.kotlin.serialization)
+    id("com.vanniktech.maven.publish")
 }
 
 android {
@@ -50,7 +52,6 @@ dependencies {
     //core
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.core.splashscreen)
 
     //compose
     implementation(platform(libs.androidx.compose.bom))
@@ -78,9 +79,44 @@ dependencies {
     implementation(libs.naulian.modify)
 
     implementation(libs.kotlinx.serialization.json)
+}
 
-    //hilt
-    implementation(libs.google.hilt.android)
-    ksp(libs.google.hilt.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
+
+    signAllPublications()
+
+    coordinates(
+        groupId = "com.naulian",
+        artifactId = "motion",
+        version = "0.1.0-alpha01"
+    )
+    //./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
+
+    pom {
+        name.set("Motion")
+        description.set("a library for a collection of jetpack compose animated components")
+        inceptionYear.set("2025")
+        url.set("https://github.com/cinkhangin/motion/")
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+            }
+        }
+
+        developers {
+            developer {
+                id.set("naulian")
+                name.set("Naulian")
+                url.set("https://github.com/cinkhangin/")
+            }
+        }
+        scm {
+            url.set("https://github.com/cinkhangin/motion/")
+            connection.set("scm:git:git://github.com/cinkhangin/motion.git")
+            developerConnection.set("scm:git:ssh://git@github.com/cinkhangin/motion.git")
+        }
+    }
 }

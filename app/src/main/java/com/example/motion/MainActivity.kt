@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun RippleCircleExample() {
-    RippleCircle(color = Color.White, onClick = {})
+    RippleCircle(rippleColor = Color.White, onClick = {})
 }
 
 @Composable

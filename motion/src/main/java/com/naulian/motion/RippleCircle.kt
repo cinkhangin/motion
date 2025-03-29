@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -22,14 +23,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun RippleCircle(
-    color: Color = Gray,
+    color: Color = Color.White,
+    rippleColor: Color = Color.White,
+    shadowColor: Color = Color.Black,
     modifier: Modifier = Modifier.size(300.dp),
     circleSize: Dp = 193.dp,
     onClick: () -> Unit,
@@ -83,8 +87,8 @@ fun RippleCircle(
                     drawCircle(
                         brush = Brush.radialGradient(
                             colors = listOf(
-                                Color.Black,
-                                Color.Black.copy(alpha = alpha),
+                                shadowColor,
+                                shadowColor.copy(alpha = alpha),
                                 Color.Transparent
                             ),
                             center = center,
@@ -93,7 +97,7 @@ fun RippleCircle(
                     )
 
                     drawCircle(
-                        color = color,
+                        color = rippleColor,
                         radius = radius,
                         center = center,
                     )
@@ -103,7 +107,7 @@ fun RippleCircle(
         Box(
             modifier = Modifier
                 .size(circleSize)
-                .background(color = Color.White, RoundedCornerShape(50))
+                .background(color = color, RoundedCornerShape(50))
                 .clickable(onClick = onClick),
             contentAlignment = Alignment.Center,
             content = content
@@ -115,13 +119,26 @@ fun RippleCircle(
 @Composable
 fun RippleDemo() {
 
-    val color = Color(0xFF0091EA)
+
+    val color = Color(0xFFFEFDF5)
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color),
         contentAlignment = Alignment.Center
     ) {
-        RippleCircle(color = color, onClick = {})
+        RippleCircle(
+            color = Color(0xFF0F8289),
+            rippleColor = color,
+            shadowColor = Color(0xFF0F8289).copy(alpha = 0.5f),
+            onClick = {}
+        ) {
+            Text(
+                text = "Listen Now",
+                color = Color.White,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
     }
 }
