@@ -30,6 +30,12 @@ import androidx.compose.ui.unit.sp
 import com.naulian.modify.noRippleClick
 import com.naulian.modify.rememberFloatState
 
+sealed interface FlipOption {
+    data object Vertical : FlipOption
+    data object Horizontal : FlipOption
+}
+
+
 @Composable
 fun FlipCard(
     modifier: Modifier = Modifier,
@@ -39,6 +45,7 @@ fun FlipCard(
     backContent: @Composable (BoxScope.() -> Unit),
     enableFlipOnClickFront: Boolean = true,
     enableFlipOnClickBack: Boolean = true,
+    flipOption: FlipOption = FlipOption.Horizontal,
     shape: Shape = RoundedCornerShape(20.dp),
     color: Color = Color.White,
     contentAlignment: Alignment = Alignment.TopStart,
@@ -62,7 +69,12 @@ fun FlipCard(
         Box(
             modifier = modifier
                 .graphicsLayer {
-                    rotationX = rotation
+                    if (flipOption == FlipOption.Vertical) {
+                        rotationX = rotation
+                    }
+                    if (flipOption == FlipOption.Horizontal) {
+                        rotationY = rotation
+                    }
                     cameraDistance = flipCameraDistance
                 }
                 .background(color, shape)
@@ -84,7 +96,12 @@ fun FlipCard(
         Box(
             modifier = modifier
                 .graphicsLayer {
-                    rotationX = 180 + rotation
+                    if (flipOption == FlipOption.Vertical) {
+                        rotationX = 180 + rotation
+                    }
+                    if (flipOption == FlipOption.Horizontal) {
+                        rotationY = 180 + rotation
+                    }
                     cameraDistance = flipCameraDistance
                 }
                 .background(color, shape)
@@ -108,7 +125,7 @@ private fun FlipCardPreview() {
     MaterialTheme {
         Box(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .background(Color(0xFFF2F3F4))
         ) {
             FlipCard(
@@ -116,14 +133,26 @@ private fun FlipCardPreview() {
                     .fillMaxWidth()
                     .aspectRatio(16f / 9f)
                     .padding(24.dp),
+                flipOption = FlipOption.Vertical,
                 frontContent = {
-                    Text(text = "Front", fontSize = 30.sp, color = Color.Black)
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color(0xFFBBCCDC)), contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "Front", fontSize = 30.sp, color = Color.Black)
+                    }
                 },
                 backContent = {
-                    Text(text = "Back", fontSize = 30.sp)
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color(0xFFDCB6E0)), contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "Back", fontSize = 30.sp, color = Color.Black)
+                    }
                 },
                 contentAlignment = Alignment.Center,
-                contentPadding = PaddingValues(20.dp)
             )
         }
     }

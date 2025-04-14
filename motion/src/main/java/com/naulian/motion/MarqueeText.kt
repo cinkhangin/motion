@@ -13,6 +13,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.graphics.graphicsLayer
@@ -64,5 +65,8 @@ fun ContentDrawScope.drawFadedEdge(leftEdge: Boolean) {
 @Preview
 @Composable
 private fun HomeTopPartPreview() {
-   MarqueeText(text = "Lorem Ipsum dolar asit amet", style = MaterialTheme.typography.headlineLarge)
+    MarqueeText(
+        text = "Lorem Ipsum dolar asit amet",
+        style = MaterialTheme.typography.headlineLarge.copy(color = White)
+    )
 }

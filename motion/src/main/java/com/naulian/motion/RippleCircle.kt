@@ -123,7 +123,6 @@ fun RippleDemo() {
     val color = Color(0xFFFEFDF5)
     Box(
         modifier = Modifier
-            .fillMaxSize()
             .background(color),
         contentAlignment = Alignment.Center
     ) {

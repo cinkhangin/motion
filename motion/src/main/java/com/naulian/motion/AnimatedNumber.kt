@@ -3,11 +3,13 @@ package com.naulian.motion
 import androidx.annotation.IntRange
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -75,22 +78,6 @@ fun AnimatedNumber(
             SingleAnimatedNumber(value, number, style)
         }
     }
-}
-
-@Preview
-@Composable
-private fun NumberPreview() {
-
-    var number by rememberIntState(0)
-
-    LaunchedEffect(Unit) {
-        repeat(1000) {
-            number += 9
-            delay(3000)
-        }
-    }
-
-    AnimatedNumber(number = number.toLong(), textStyle = TextStyle.Default)
 }
 
 @Composable
@@ -169,11 +156,7 @@ fun SingleAnimatedNumber(
                 Text(
                     modifier = Modifier.height(textHeight),
                     text = (it % 10).toString(),
-                    style = TextStyle.Default.copy(
-                        fontSize = textStyle.fontSize,
-                        lineHeight = textStyle.lineHeight,
-                        color = MaterialTheme.colorScheme.onBackground
-                    ),
+                    style = textStyle,
                 )
             }
         }
@@ -182,6 +165,27 @@ fun SingleAnimatedNumber(
 
 @Preview
 @Composable
-private fun AutoNumberPreview() {
-    SingleAnimatedNumber(5, 0, textStyle = TextStyle.Default)
+private fun SingleAnimatedNumberPreview() {
+    SingleAnimatedNumber(5, 0, textStyle = TextStyle.Default.copy(color = White))
+}
+
+@Preview
+@Composable
+private fun AnimatedNumberPreview() {
+
+    var number by rememberIntState(0)
+
+    LaunchedEffect(Unit) {
+        repeat(1000) {
+            number += 9
+            delay(3000)
+        }
+    }
+
+    Box(modifier = Modifier
+        .background(White)
+        .padding(24.dp)
+    ) {
+        AnimatedNumber(number = number.toLong(), textStyle = MaterialTheme.typography.headlineLarge)
+    }
 }

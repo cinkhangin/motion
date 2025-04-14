@@ -7,6 +7,7 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -76,15 +77,14 @@ fun GradientText(
 @Composable
 fun GradientTextDemo() {
     MaterialTheme {
-        Column(
+        Box(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+           contentAlignment = Alignment.Center
         ) {
             GradientText(
                 text = "Rainbow Text",
+                style = MaterialTheme.typography.headlineLarge
             )
         }
     }
