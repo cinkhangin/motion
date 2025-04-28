@@ -13,11 +13,13 @@ import androidx.compose.runtime.Composable
 @Suppress("unused")
 @Composable
 fun InfiniteTransition.animateSimpleFloat(
-    duration: Int = 1000,
-    easing: Easing = LinearEasing,
     label: String,
+    initialValue: Float = 0f,
+    targetValue: Float = 1f,
+    duration: Int = 1000,
     delay: Int = 0,
     startDelay: Int = 0,
+    easing: Easing = LinearEasing,
     repeatMode: RepeatMode = RepeatMode.Reverse
 ) = animateFloat(
     initialValue = 0f,
