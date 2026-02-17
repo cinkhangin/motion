@@ -118,8 +118,6 @@ fun RippleCircle(
 @Preview
 @Composable
 fun RippleDemo() {
-
-
     val color = Color(0xFFFEFDF5)
     Box(
         modifier = Modifier
