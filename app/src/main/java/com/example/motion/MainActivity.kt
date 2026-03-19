@@ -20,10 +20,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.motion.theme.ComposeTheme
 import com.naulian.modify.rememberIntState
-import com.naulian.motion.AnimatedNumber
-import com.naulian.motion.GradientText
-import com.naulian.motion.MarqueeText
-import com.naulian.motion.RippleCircle
+import com.example.motion.component.AnimatedNumber
+import com.example.motion.component.GradientText
+import com.example.motion.component.MarqueeText
+import com.example.motion.component.RippleCircle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlin.random.Random
@@ -37,7 +37,14 @@ class MainActivity : ComponentActivity() {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
-                ) {}
+                ) {
+                    RippleCircle(
+                        //rippleColor = Color.Red.copy(0.1f),
+                        shadowColor = Color(0xFF690000),
+                        color = Color.Red,
+                        onClick = {}
+                    )
+                }
             }
         }
     }

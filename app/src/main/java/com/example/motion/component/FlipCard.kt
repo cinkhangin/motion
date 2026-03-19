@@ -1,4 +1,4 @@
-package com.naulian.motion
+package com.example.motion.component
 
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.LinearOutSlowInEasing

@@ -1,4 +1,4 @@
-package com.naulian.motion
+package com.ckgin.motion
 
 import org.junit.Test
 

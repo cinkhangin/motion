@@ -1,4 +1,4 @@
-package com.naulian.motion
+package com.example.motion.component
 
 import androidx.annotation.IntRange
 import androidx.compose.animation.core.CubicBezierEasing
@@ -91,11 +91,9 @@ fun SingleAnimatedNumber(
 
     val lineHeight: TextUnit = textStyle.lineHeight.value.sp
 
-    val heightPx: Float
-    val heightDp: Dp
-    LocalDensity.current.apply {
-        heightPx = lineHeight.toPx()
-        heightDp = (heightPx / density).dp
+    val (heightPx : Float, heightDp : Dp) = with(LocalDensity.current){
+        val heightPx = lineHeight.toPx()
+        heightPx to (heightPx / density).dp
     }
 
     var prevFullNumber by rememberLongState(-1L)

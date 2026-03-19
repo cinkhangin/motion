@@ -1,4 +1,4 @@
-package com.naulian.motion
+package com.ckgin.motion
 
 import androidx.compose.animation.core.CubicBezierEasing
 

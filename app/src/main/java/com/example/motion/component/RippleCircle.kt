@@ -1,4 +1,4 @@
-package com.naulian.motion
+package com.example.motion.component
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -31,10 +31,10 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun RippleCircle(
+    modifier: Modifier = Modifier,
     color: Color = Color.White,
     rippleColor: Color = Color.White,
     shadowColor: Color = Color.Black,
-    modifier: Modifier = Modifier.size(300.dp),
     circleSize: Dp = 193.dp,
     onClick: () -> Unit,
     content: @Composable BoxScope.() -> Unit = {}
@@ -80,7 +80,7 @@ fun RippleCircle(
             listOf(ripple1, ripple2)
                 .filter { it > 0f }
                 .sortedDescending()
-                .forEachIndexed { index, value ->
+                .forEachIndexed { _, value ->
                     val radius = initialRadius + (maxRadius - initialRadius) * value
                     val alpha = ((1f - value) * 1f).coerceIn(0f, 1f)
 

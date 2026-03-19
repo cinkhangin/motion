@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.compose)
     alias(libs.plugins.kotlin.serialization)
@@ -10,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.naulian.motion"
+    namespace = "com.ckgin.motion"
     compileSdk = 36
 
     defaultConfig {
@@ -90,9 +89,9 @@ mavenPublishing {
     signAllPublications()
 
     coordinates(
-        groupId = "com.naulian",
+        groupId = "com.ckgin",
         artifactId = "motion",
-        version = "0.1.2"
+        version = "1.0.0-alpha01"
     )
     //./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
 
@@ -111,8 +110,8 @@ mavenPublishing {
 
         developers {
             developer {
-                id.set("naulian")
-                name.set("Naulian")
+                id.set("ckgin")
+                name.set("Cin Khan Gin")
                 url.set("https://github.com/cinkhangin/")
             }
         }
